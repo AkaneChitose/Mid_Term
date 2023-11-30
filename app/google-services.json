@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "718590444152",
+    "project_id": "login-logout-register-cp-ab738",
+    "storage_bucket": "login-logout-register-cp-ab738.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718590444152:android:87cf37fa47bf5d053be38d",
+        "android_client_info": {
+          "package_name": "com.example.mid_term"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-MVIpLVvp381-CRV8Wf8pLPxvUpoMJvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
