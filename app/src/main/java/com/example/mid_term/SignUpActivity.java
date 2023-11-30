@@ -60,5 +60,11 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+        loginRedirectText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            }
+        });
     }
 }
