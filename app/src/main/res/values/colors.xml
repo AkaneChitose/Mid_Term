@@ -2,6 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="tint_green">#E6F8B2</color>
+    <color name="green">#32712C</color>
+    <color name="tint_purple">#E8E1EF</color>
+    <color name="gold">#F7B538</color>
+    <color name="tint_yellow">#FBDA9B</color>
     <color name="custom_text_color">#8692f7</color>
     <color name="custom_border_color">#6e7cf5</color>
 </resources>

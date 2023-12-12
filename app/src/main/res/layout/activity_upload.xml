@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadActivity"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@drawable/custom_shape">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Image Here"
+                android:textAlignment="center"
+                android:textColor="@color/custom_border_color"
+                android:textSize="30sp"
+                />
+            <ImageView
+                android:id="@+id/UploadImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/upload"
+                android:layout_marginTop="10dp"
+                />
+            <EditText
+                android:id="@+id/UploadTopic"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_shape"
+                android:hint="Enter the topic..."
+                android:gravity="start|center_vertical"
+                android:textColor="@color/custom_border_color"/>
+
+            <EditText
+                android:id="@+id/UploadDesc"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:padding="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_shape"
+                android:hint="Enter the description..."
+                android:gravity="start|center_vertical"
+                android:textColor="@color/custom_border_color"/>
+            <EditText
+                android:id="@+id/UploadTag"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_shape"
+                android:hint="Enter the tag..."
+                android:gravity="start|center_vertical"
+                android:textColor="@color/custom_border_color"/>
+
+            <Button
+                android:id="@+id/SaveButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                app:cornerRadius="20dp"/>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</ScrollView>

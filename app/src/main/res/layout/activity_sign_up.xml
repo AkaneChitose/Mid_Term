@@ -68,6 +68,7 @@
                 app:cornerRadius="20dp"
                 android:textSize="18sp"
                 android:text="Sign Up"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/custom_border_color"/>
 
             <TextView
