@@ -7,6 +7,10 @@ public class DataClass {
     private String dataImage;
 
     public DataClass(String title, String desc, String tag, String imageURL) {
+        this.dataTitle = title;
+        this.dataDesc = desc;
+        this.dataTag = tag;
+        this.dataImage = imageURL;
     }
 
     public String getDataTitle() {
@@ -23,5 +27,9 @@ public class DataClass {
 
     public String getDataImage() {
         return dataImage;
+    }
+
+    public DataClass(){
+
     }
 }

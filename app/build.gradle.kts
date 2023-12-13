@@ -37,7 +37,17 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
+
     testImplementation("junit:junit:4.13.2")
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    //Glide hỗ trợ tìm nạp, giải mã và hiển thị video tĩnh, hình ảnh và ảnh GIF động.
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+
+    //float btn
+    implementation("com.github.clans:fab:1.6.4")
+
 }

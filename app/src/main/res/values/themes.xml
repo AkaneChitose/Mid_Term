@@ -9,5 +9,16 @@
         <item name="colorOnSecondary">@color/custom_text_color</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
+
     <style name="Theme.Mid_Term" parent="Base.Theme.Mid_Term" />
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+<!--    delete-btn-->
+    <style name="ExtendedFloatingActionButtonShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
