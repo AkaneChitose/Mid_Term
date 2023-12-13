@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Mid_Term"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
         <activity

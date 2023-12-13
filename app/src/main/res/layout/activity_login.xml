@@ -58,7 +58,8 @@
                 android:padding="8dp"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:inputType="textPassword"/>
 
             <Button
                 android:id="@+id/login_btn"
