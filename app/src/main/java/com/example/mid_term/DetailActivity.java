@@ -1,6 +1,8 @@
 package com.example.mid_term;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView detailDesc, detailTitle;
+    private TextView detailDesc, detailTitle, detailTag;
     private ImageView detailImage;
     private FloatingActionButton deleteButton, editButton;
     private String key = "";
@@ -31,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
         // Liên kết các thành phần giao diện với mã nguồn
         detailDesc = findViewById(R.id.detailDesc);
         detailTitle = findViewById(R.id.detailTitle);
+        detailTag = findViewById(R.id.detailTag);
         detailImage = findViewById(R.id.detailImage);
         deleteButton = findViewById(R.id.deleteBtn);
         editButton = findViewById(R.id.editBtn);
@@ -41,9 +44,10 @@ public class DetailActivity extends AppCompatActivity {
             // Hiển thị dữ liệu chi tiết lên giao diện
             detailDesc.setText(bundle.getString("Description"));
             detailTitle.setText(bundle.getString("Title"));
+            detailTag.setText(bundle.getString("Tag"));
             key = bundle.getString("Key");
             imageUrl = bundle.getString("Image");
-            Glide.with(this).load(bundle.getString("Image")).into(detailImage);
+            Glide.with(this).load(imageUrl).into(detailImage);
         }
 
         // Xử lý sự kiện khi người dùng nhấn nút Delete
@@ -54,7 +58,40 @@ public class DetailActivity extends AppCompatActivity {
                 deleteData();
             }
         });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo Intent để chuyển từ DetailActivity sang UpdateActivity
+                Intent intent = new Intent(DetailActivity.this, UpdateActivity.class);
+
+                // Đưa dữ liệu chi tiết sang UpdateActivity
+                intent.putExtra("Title", detailTitle.getText().toString());
+                intent.putExtra("Description", detailDesc.getText().toString());
+                intent.putExtra("Tag", detailTag.getText().toString());
+                intent.putExtra("Key", key);
+                intent.putExtra("Image", imageUrl);
+
+                // Khởi chạy UpdateActivity và đặt requestCode là 1
+                startActivityForResult(intent, 1);
+            }
+        });
     }
+
+    // Override phương thức onActivityResult để nhận dữ liệu từ UpdateActivity khi nó kết thúc
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            // Nhận dữ liệu từ Intent gửi từ UpdateActivity
+            if (data != null) {
+                detailTitle.setText(data.getStringExtra("Title"));
+                detailDesc.setText(data.getStringExtra("Description"));
+                detailTag.setText(data.getStringExtra("Tag"));
+            }
+        }
+    }
+
 
     // Phương thức để xóa dữ liệu từ Firebase Database và Firebase Storage
     private void deleteData() {

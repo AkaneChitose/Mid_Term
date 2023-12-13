@@ -124,6 +124,7 @@ public class UploadActivity extends AppCompatActivity {
                 } else {
                     // Nếu upload thất bại, đóng dialog xử lý
                     dialog.dismiss();
+                    Toast.makeText(UploadActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -131,19 +132,15 @@ public class UploadActivity extends AppCompatActivity {
 
     public void uploadData() {
         // Lấy thông tin từ các trường nhập liệu
-        // Upload
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
         String tag = uploadTag.getText().toString();
-
-        //Update
-        String currentDate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 
         // Tạo đối tượng DataClass để lưu dữ liệu
         DataClass dataClass = new DataClass(title, desc, tag, imageURL);
 
         // Sử dụng push() để tạo một key duy nhất cho mỗi mục dữ liệu dưới nút "DEMO"
-        DatabaseReference demoRef = FirebaseDatabase.getInstance().getReference("DEMO").child(currentDate);
+        DatabaseReference demoRef = FirebaseDatabase.getInstance().getReference("DEMO").push(); // Sử dụng push() để tạo key tự động
 
         // Thực hiện lưu dữ liệu lên Firebase Database
         demoRef.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -151,9 +148,7 @@ public class UploadActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(UploadActivity.this, "Saved", Toast.LENGTH_SHORT).show();
-
-                    // Kết thúc activity hiện tại (không cần khởi động lại MainActivity)
-                    finish();
+                    finish(); // Kết thúc activity hiện tại (không cần khởi động lại MainActivity)
                 } else {
                     Log.e("UploadActivity", "Upload failed: " + Objects.requireNonNull(task.getException()).getMessage());
                     Toast.makeText(UploadActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
