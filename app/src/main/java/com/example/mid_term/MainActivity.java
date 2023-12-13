@@ -1,5 +1,3 @@
-// MainActivity.java
-
 package com.example.mid_term;
 
 import androidx.annotation.NonNull;
@@ -8,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,57 +19,54 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    FloatingActionButton fab;
-    RecyclerView recyclerView;
-    List<DataClass> dataList;
-    DatabaseReference databaseReference;
-    ValueEventListener eventListener;
+    private FloatingActionButton fab;
+    private RecyclerView recyclerView;
+    private List<DataClass> dataList;
+    private DatabaseReference databaseReference;
+    private ValueEventListener eventListener;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fab = findViewById(R.id.fab);
+        // Khởi tạo các thành phần giao diện
+        initializeViews();
+
+        // Cấu hình RecyclerView
+        setupRecyclerView();
+
+        // Khởi tạo đối tượng FirebaseAuth
         auth = FirebaseAuth.getInstance();
-        recyclerView = findViewById(R.id.recycleView);
 
-        Button logoutBtn = findViewById(R.id.logout_btn);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 1);
-
-        recyclerView.setLayoutManager(gridLayoutManager);
-
+        // Tạo hộp thoại xử lý
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setCancelable(false);
         builder.setView(R.layout.processing_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
 
+        // Khởi tạo danh sách dữ liệu
         dataList = new ArrayList<>();
-
         MyAdapter adapter = new MyAdapter(MainActivity.this, dataList);
         recyclerView.setAdapter(adapter);
 
+        // Tham chiếu đến node "DEMO" trên Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("DEMO");
         dialog.show();
 
+        // Lắng nghe sự kiện thay đổi dữ liệu trên Firebase Database
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                dataList.clear();
-                for(DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    DataClass dataClass = itemSnapshot.getValue(DataClass.class);
-                    dataList.add(dataClass);
-                }
-                adapter.notifyDataSetChanged();
+                // Xử lý dữ liệu từ DataSnapshot
+                handleDataSnapshot(snapshot);
                 dialog.dismiss();
             }
 
@@ -82,36 +76,61 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
+        // Xử lý sự kiện click nút Floating Action Button (FAB)
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,UploadActivity.class);
-                startActivity(intent);
+                // Mở màn hình UploadActivity
+                startUploadActivity();
             }
         });
 
+        // Xử lý sự kiện click nút Logout
+        Button logoutBtn = findViewById(R.id.logout_btn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Log out the user
-                auth.signOut();
-
-                // Redirect to the LoginActivity
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish(); // Close the current activity
+                // Đăng xuất người dùng và chuyển hướng về LoginActivity
+                logoutAndRedirect();
             }
         });
+    }
+
+    // Phương thức để khởi tạo các thành phần giao diện
+    private void initializeViews() {
+        fab = findViewById(R.id.fab);
+        recyclerView = findViewById(R.id.recycleView);
+    }
+
+    // Phương thức để cài đặt RecyclerView với GridLayoutManager
+    private void setupRecyclerView() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 1);
+        recyclerView.setLayoutManager(gridLayoutManager);
+    }
+
+    // Phương thức để xử lý DataSnapshot và cập nhật danh sách dữ liệu
+    private void handleDataSnapshot(DataSnapshot snapshot) {
+        dataList.clear();
+        for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+            DataClass dataClass = itemSnapshot.getValue(DataClass.class);
+            if (dataClass != null) {
+                dataClass.setKey(itemSnapshot.getKey());
+                dataList.add(dataClass);
+            }
+        }
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    // Phương thức để mở màn hình UploadActivity
+    private void startUploadActivity() {
+        Intent intent = new Intent(MainActivity.this, UploadActivity.class);
+        startActivity(intent);
+    }
+
+    // Phương thức để đăng xuất và chuyển hướng về LoginActivity
+    private void logoutAndRedirect() {
+        auth.signOut();
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 }

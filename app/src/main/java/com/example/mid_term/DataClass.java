@@ -5,6 +5,15 @@ public class DataClass {
     private String dataDesc;
     private String dataTag;
     private String dataImage;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public DataClass(String title, String desc, String tag, String imageURL) {
         this.dataTitle = title;
