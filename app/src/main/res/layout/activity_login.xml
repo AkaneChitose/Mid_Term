@@ -42,10 +42,12 @@
                 android:background="@drawable/custom_shape"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:padding="8dp"
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/login_password"
@@ -59,7 +61,8 @@
                 android:drawablePadding="8dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"/>
 
             <Button
                 android:id="@+id/login_btn"

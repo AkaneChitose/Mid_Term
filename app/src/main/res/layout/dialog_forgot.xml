@@ -37,7 +37,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            android:textColor="@color/white"
+            android:textColor="@color/custom_text_color"
             app:layout_constraintTop_toBottomOf="@id/forgotTitle"
             app:layout_constraintBottom_toTopOf="@id/emailBox"/>
 
@@ -49,11 +49,14 @@
             android:textSize="16sp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="30dp"
+            android:layout_marginTop="6dp"
             android:maxLines="1"
+            android:imeOptions="actionDone"
             android:backgroundTint="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/forgotTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/forgotTitle"
+            android:inputType="textEmailAddress" />
 
         <Button
             android:layout_width="0dp"
@@ -87,7 +90,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/dialogBox"
             app:layout_constraintStart_toEndOf="@id/btnCancel"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

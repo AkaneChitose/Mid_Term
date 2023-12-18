@@ -19,8 +19,9 @@
             android:id="@+id/recImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="18dp"
-            android:padding="6dp"
+            android:layout_marginStart="15dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
             android:scaleType="centerCrop"
             android:src="@drawable/upload"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
@@ -44,8 +45,8 @@
             android:layout_below="@+id/recDesc"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="-143dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="47dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="Tag"
@@ -53,7 +54,7 @@
             android:textAllCaps="true"
             android:textColor="@color/custom_border_color"
             android:textSize="12sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/recDesc"

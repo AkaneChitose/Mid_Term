@@ -46,6 +46,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_shape"
                 android:hint="Re enter the topic..."
+                android:imeOptions="actionNext"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/custom_border_color"/>
 
@@ -58,6 +59,7 @@
                 android:background="@drawable/custom_shape"
                 android:hint="Re enter the description..."
                 android:gravity="start|center_vertical"
+                android:imeOptions="actionNext"
                 android:textColor="@color/custom_border_color"/>
             <EditText
                 android:id="@+id/UpdateTag"
@@ -68,6 +70,7 @@
                 android:background="@drawable/custom_shape"
                 android:hint="Re enter the tag..."
                 android:gravity="start|center_vertical"
+                android:imeOptions="actionDone"
                 android:textColor="@color/custom_border_color"/>
 
             <Button
